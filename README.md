@@ -415,29 +415,16 @@ The tests cover:
 
 ## 8. Live Demo
 
-- **Frontend**: https://projectforge-ai-gamma.vercel.app/
-- **Backend API**: https://projectforge-ai-b7ai.onrender.com/
-- **Backend Health Check**: https://projectforge-ai-b7ai.onrender.com/api/health
+| Service              | URL                                                  |
+|----------------------|------------------------------------------------------|
+| Frontend             | https://projectforge-ai-gamma.vercel.app/            |
+| Backend API          | https://projectforge-ai-b7ai.onrender.com/           |
+| Backend Health Check | https://projectforge-ai-b7ai.onrender.com/api/health |
+| GitHub Repository    | https://github.com/manav122005/projectforge-ai       |
 
 ---
 
-## 9. Screenshots
-
-### Dashboard
-
-![Dashboard](image.png)
-
-### Project Detail & Health Score
-
-![Project Detail](image-1.png)
-
-### Kanban Task Board
-
-![Kanban Task Board](image-2.png)
-
----
-
-## 10. Running Locally
+## 9. Running Locally
 
 ### Prerequisites
 
@@ -504,7 +491,7 @@ Frontend application runs at `http://localhost:3000`.
 
 ---
 
-## 11. Environment Variables
+## 10. Environment Variables
 
 ### Backend
 
@@ -527,7 +514,7 @@ Frontend application runs at `http://localhost:3000`.
 
 ---
 
-## 12. Health Score Architecture
+## 11. Health Score Architecture
 
 ProjectForge AI uses a deterministic backend health engine as the authoritative source of project health.
 
@@ -553,7 +540,7 @@ All project views use the persisted backend health state, including:
 
 ---
 
-## 13. AI Provider Resilience
+## 12. AI Provider Resilience
 
 ProjectForge AI uses a multi-tier AI provider strategy:
 
@@ -569,7 +556,7 @@ If the primary provider is unavailable, the system automatically falls back to G
 
 ---
 
-## 14. Human-in-the-Loop Safety
+## 13. Human-in-the-Loop Safety
 
 AI-generated recovery recommendations do not automatically modify project data.
 
@@ -593,6 +580,6 @@ Event recorded in audit trail
 
 ---
 
-## 15. License
+## 14. License
 
 MIT License — Copyright (c) 2026 ProjectForge AI Contributors.
