@@ -38,16 +38,14 @@ const computeLiveProjectHealth = ({ project, tasks = [], milestones = [], member
   const taskProgress = totalTasks > 0 ? (completedTasks / totalTasks) : 0;
 
   // 1. Technical Feasibility Subscore (25% weight)
-  // Evaluates difficulty, architecture graph, tech stack clarity
+  // Derived purely from observable project state — never seeded from previously persisted values
+  // to prevent score drift across different API call orderings.
   let technicalScore = 75; // Neutral baseline for new/unassessed projects
-  if (project?.healthBreakdown?.technical && project.healthBreakdown.technical !== 100) {
-    technicalScore = project.healthBreakdown.technical;
-  }
   if (project?.technologyStack?.length > 0) {
-    technicalScore = Math.max(technicalScore, 80);
+    technicalScore = 80; // Technology stack defined by AI analysis
   }
   if (project?.architecture?.nodes?.length > 0) {
-    technicalScore = Math.min(100, technicalScore + 5);
+    technicalScore = Math.min(100, technicalScore + 5); // Architecture diagram generated
   }
   const technical = clamp(technicalScore);
 

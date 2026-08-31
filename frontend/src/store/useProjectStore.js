@@ -227,6 +227,8 @@ export const useProjectStore = create((set, get) => ({
           isAiLoading: false,
           error: null
         });
+        // Refresh currentProject so health score reflects the new architecture nodes
+        get().fetchProjectById(id);
         return { success: true, architecture, provider };
       }
     } catch (err) {
