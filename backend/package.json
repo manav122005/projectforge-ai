@@ -1,0 +1,30 @@
+{
+  "name": "projectforge-backend",
+  "version": "1.0.0",
+  "description": "ProjectForge AI Backend API Service",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "test": "node test_api.js && node test_project_api.js && node test_ai_phase3.js && node test_phase4.js && node test_phase5_phase6.js && node test_health_audit.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.3.1",
+    "express-validator": "^7.1.0",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^7.6.0",
+    "mongoose": "^8.5.1",
+    "morgan": "^1.10.0",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^9.4.0",
+    "nodemon": "^3.1.4"
+  }
+}
