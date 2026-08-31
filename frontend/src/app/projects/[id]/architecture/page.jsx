@@ -18,7 +18,8 @@ import {
   ShieldAlert,
   Bot,
   Loader2,
-  RefreshCw
+  RefreshCw,
+  Users
 } from 'lucide-react';
 
 const providerBadges = {
