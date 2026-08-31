@@ -209,9 +209,11 @@ const getUserProjects = async (userId, { search, status, sortBy = 'createdAt', o
     return obj;
   });
 
-  // Persist computed health scores asynchronously (fire-and-forget)
+  // Persist computed health scores synchronously
   if (bulkOps.length > 0) {
-    Project.bulkWrite(bulkOps).catch(() => {});
+    try {
+      await Project.bulkWrite(bulkOps);
+    } catch (_) {}
   }
 
   return {
@@ -251,10 +253,12 @@ const getProjectById = async (projectId, userId) => {
   populatedProject.healthBreakdown = liveHealth.breakdown;
 
   // Persist the computed health to MongoDB
-  Project.updateOne(
-    { _id: projectId },
-    { $set: { healthScore: liveHealth.score, healthBreakdown: liveHealth.breakdown } }
-  ).catch(() => {});
+  try {
+    await Project.updateOne(
+      { _id: projectId },
+      { $set: { healthScore: liveHealth.score, healthBreakdown: liveHealth.breakdown } }
+    );
+  } catch (_) {}
 
   return {
     project: populatedProject,

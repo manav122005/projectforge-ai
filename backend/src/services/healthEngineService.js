@@ -56,7 +56,7 @@ const computeLiveProjectHealth = ({ project, tasks = [], milestones = [], member
   let overdueMilestonesCount = 0;
 
   milestones.forEach((m) => {
-    if (m.dueDate && new Date(m.dueDate) < now && m.status !== 'completed') {
+    if (m.dueDate && !isNaN(new Date(m.dueDate).getTime()) && new Date(m.dueDate) < now && m.status !== 'completed') {
       overdueMilestonesCount += 1;
     }
   });
@@ -125,9 +125,19 @@ const computeLiveProjectHealth = ({ project, tasks = [], milestones = [], member
     let totalAvailabilityHours = 0;
     let totalAssignedHours = 0;
 
+    // Calculate actual task workload per member directly from tasks array
+    const memberWorkloads = {};
+    tasks.forEach((t) => {
+      if (t.assignedMember && t.status !== 'completed') {
+        const mid = t.assignedMember._id ? t.assignedMember._id.toString() : t.assignedMember.toString();
+        memberWorkloads[mid] = (memberWorkloads[mid] || 0) + (t.estimatedHours || 0);
+      }
+    });
+
     members.forEach((m) => {
+      const mid = m._id ? m._id.toString() : '';
       const avail = m.availabilityHours || 40;
-      const work = m.workload || 0;
+      const work = memberWorkloads[mid] !== undefined ? memberWorkloads[mid] : (m.workload || 0);
       totalAvailabilityHours += avail;
       totalAssignedHours += work;
       if (work > avail) {

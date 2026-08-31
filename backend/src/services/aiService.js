@@ -1,10 +1,14 @@
 const { analyzeProjectIdea } = require('./ai/projectAnalystAgent');
 const { generateArchitectureGraph } = require('./ai/architectureAgent');
 const { generateProjectPlan } = require('./ai/planningAgent');
-const { calculateProjectHealth } = require('./healthEngineService');
+const { calculateProjectHealth, computeLiveProjectHealth } = require('./healthEngineService');
 const { verifyProjectAccess } = require('./projectService');
 const Project = require('../models/projectModel');
 const AIAnalysis = require('../models/aiAnalysisModel');
+const Task = require('../models/taskModel');
+const Milestone = require('../models/milestoneModel');
+const ProjectMember = require('../models/projectMemberModel');
+const Risk = require('../models/riskModel');
 
 /**
  * Preview analysis for a project idea without requiring an existing project
@@ -52,27 +56,30 @@ const analyzeExistingProject = async (projectId, userId) => {
 
   const { data, provider, model } = await analyzeProjectIdea(ideaText, contextText);
 
-  const health = calculateProjectHealth({
-    difficulty: data.difficulty,
-    majorModulesCount: data.majorModules.length,
-    estimatedDurationDays: data.estimatedDurationDays,
-    recommendedTeamSize: data.recommendedTeamSize,
-    mvpFeaturesCount: data.mvpFeatures.length,
-    futureFeaturesCount: data.futureFeatures.length,
-    requiredSkills: data.requiredSkills,
-    analystSubscores: {
-      feasibilitySubscore: data.feasibilitySubscore,
-      skillReadinessSubscore: data.skillReadinessSubscore
-    }
-  });
-
-  // Update project fields with validated AI outputs & deterministic health score
-  project.healthScore = health.score;
-  project.healthBreakdown = health.breakdown;
+  // Update project fields with validated AI outputs
   project.technologyStack = data.recommendedTechnologies;
   project.requiredSkills = data.requiredSkills;
   project.recommendedMVP = data.mvpFeatures;
   project.risks = data.risks;
+
+  // Fetch project entities to compute live deterministic health score
+  const [tasks, milestones, members, risks] = await Promise.all([
+    Task.find({ projectId: project._id }),
+    Milestone.find({ projectId: project._id }),
+    ProjectMember.find({ projectId: project._id }),
+    Risk.find({ projectId: project._id })
+  ]);
+
+  const liveHealth = computeLiveProjectHealth({
+    project,
+    tasks,
+    milestones,
+    members,
+    risks
+  });
+
+  project.healthScore = liveHealth.score;
+  project.healthBreakdown = liveHealth.breakdown;
   await project.save();
 
   // Persist record in AIAnalysis collection
@@ -89,7 +96,7 @@ const analyzeExistingProject = async (projectId, userId) => {
   return {
     project: await project.populate('owner', 'name email role'),
     analysis: data,
-    health,
+    health: liveHealth,
     provider,
     model
   };
@@ -110,6 +117,25 @@ const generateArchitectureForProject = async (projectId, userId) => {
   const { data, provider, model } = await generateArchitectureGraph(analystContext);
 
   project.architecture = data;
+
+  // Recalculate deterministic health score with updated architecture nodes
+  const [tasks, milestones, members, risks] = await Promise.all([
+    Task.find({ projectId: project._id }),
+    Milestone.find({ projectId: project._id }),
+    ProjectMember.find({ projectId: project._id }),
+    Risk.find({ projectId: project._id })
+  ]);
+
+  const liveHealth = computeLiveProjectHealth({
+    project,
+    tasks,
+    milestones,
+    members,
+    risks
+  });
+
+  project.healthScore = liveHealth.score;
+  project.healthBreakdown = liveHealth.breakdown;
   await project.save();
 
   await AIAnalysis.create({
@@ -124,6 +150,7 @@ const generateArchitectureForProject = async (projectId, userId) => {
 
   return {
     architecture: data,
+    health: liveHealth,
     provider,
     model
   };
