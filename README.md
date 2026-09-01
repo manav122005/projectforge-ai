@@ -1,250 +1,483 @@
-# ProjectForge AI
+ProjectForge AI
 
-> An AI-powered technical project manager combined with a lightweight engineering workspace.
+An AI-powered technical project manager combined with a lightweight engineering workspace.
 
-ProjectForge AI transforms a natural-language software idea into a structured, feasibility-checked, execution-ready project plan.
+ProjectForge AI transforms a natural-language software idea into a structured, feasibility-checked, execution-ready project plan. It combines AI-assisted project analysis with deterministic engineering intelligence to help users understand, design, plan, organize, execute, monitor, and recover software projects from a single workspace.
 
-It combines AI-assisted project analysis with deterministic engineering intelligence to help users understand, design, plan, organize, execute, monitor, and recover software projects from a single unified workspace.
+1. Project Name
 
----
+ProjectForge AI
 
-## 1. Problem Statement
+2. Problem Statement
 
-Planning and managing software projects can be difficult, especially when deciding:
+Planning and managing software projects can be difficult. Teams often need to determine:
 
-- Whether an idea is technically feasible
-- What technologies should be used
-- What the MVP should contain
-- How long development may take
-- What skills the team needs
-- How work should be divided
-- Whether the project is currently healthy
-- What risks are affecting progress
-- How to recover when a project falls behind
+Whether an idea is technically feasible
 
-Traditional project management tools primarily help teams track tasks after planning has already been completed.
+Which technologies should be used
+
+What the MVP should contain
+
+How long development may take
+
+What skills the team needs
+
+How work should be divided
+
+Whether the project is healthy
+
+What risks are affecting progress
+
+How to recover when a project falls behind
+
+Traditional project-management tools mainly help teams track work after planning has already been completed.
 
 ProjectForge AI addresses this gap by combining AI-powered project intelligence with a structured engineering workspace.
 
-A user can provide a project idea in natural language, and ProjectForge AI can transform it into:
+IDEA → UNDERSTAND → ANALYZE → DESIGN → PLAN → ORGANIZE → EXECUTE → MONITOR → RECOVER
 
-**IDEA → UNDERSTAND → ANALYZE → DESIGN → PLAN → ORGANIZE → EXECUTE → MONITOR → RECOVER**
+3. Features
 
----
+AI Project Intelligence
 
-## 2. Features
+Natural-language project idea analysis
 
-### AI Project Intelligence
+Technical feasibility analysis
 
-- Natural-language project idea analysis
-- Technical feasibility analysis
-- MVP and post-MVP feature identification
-- Technology stack recommendations
-- Project duration estimation
-- Team-size estimation
-- Structured project blueprint generation
+MVP and post-MVP feature identification
 
-### Multi-Agent AI Architecture
+Technology-stack recommendations
 
-ProjectForge AI uses specialized AI agents for different project-management tasks:
+Project-duration estimation
 
-- **Project Analyst Agent**: Feasibility assessment, complexity scoring, and MVP scoping.
-- **Architecture Agent**: Visual node-edge architecture diagrams and technology stack rationale.
-- **Planning Agent**: Work breakdown structure, milestone sequencing, and required skill extraction.
-- **Risk Agent**: Continuous project risk detection and severity classification.
-- **Recovery Agent**: Tactical recovery strategies with human-in-the-loop approval.
-- **Monitoring Agent**: Telemetry auditing and health trend analysis.
-- **Project Copilot**: Grounded assistant answering questions strictly from live project state.
+Team-size estimation
 
-AI responses are strictly validated before being persisted.
+Structured project blueprint generation
 
-The system includes a tri-tier provider cascade with a deterministic fallback layer so that core functionality continues even when an external AI provider is unavailable.
+Multi-Agent AI Architecture
 
-### Deterministic Project Health Intelligence
+ProjectForge AI uses specialized AI agents:
 
-Project health is calculated using a deterministic backend health engine.
+Project Analyst Agent — feasibility, complexity, and MVP analysis
 
-The health score uses the following weighted factors:
+Architecture Agent — system architecture and technology rationale
 
-- Technical — 25%
-- Timeline — 20%
-- Skills — 20%
-- Scope — 20%
-- Team Capacity — 15%
+Planning Agent — work breakdown, milestones, and required skills
 
-The authoritative health score and breakdown are calculated and persisted to MongoDB by the backend and are used consistently throughout the application (Dashboard, Project Cards, Detail View, and Health Widgets).
+Risk Agent — project-risk detection and severity classification
 
-### Architecture Visualization
+Recovery Agent — tactical recovery strategies
 
-- Interactive React Flow architecture diagrams
-- Component-based system visualization
-- Directional dependency relationships
-- AI-generated architecture representation
+Monitoring Agent — health and project telemetry analysis
 
-### Execution Workspace
+Project Copilot — assistance grounded in live project state
 
-- Milestone management
-- Task management
-- Task dependencies
-- Dependency cycle detection
-- Automatic task completion tracking
-- Milestone progress calculation
-- Six-column Kanban board:
-  - Backlog
-  - Todo
-  - In Progress
-  - Blocked
-  - Review
-  - Completed
-- Drag-and-drop task progression with optimistic UI updates and rollback
+AI responses are validated before being persisted. The system uses a multi-tier AI-provider strategy with a deterministic fallback.
 
-### Team & Resource Management
+Deterministic Project Health
 
-- Team member management
-- Task assignment
-- Workload calculation
-- Capacity classification:
-  - Under Capacity
-  - Near Capacity
-  - Over Capacity
-- Deterministic skill-gap analysis
-- Required-skill coverage analysis
+Project health is calculated by a backend health engine using:
 
-### Risk Radar
+Factor
 
-ProjectForge AI automatically detects project risks such as:
+Weight
 
-- Team workload overload
-- Blocked dependency bottlenecks
-- Missing critical skills
-- Milestone deadline proximity
+Technical
 
-The Risk Radar provides:
+25%
 
-- Severity classification
-- Category filtering
-- Severity filtering
-- Manual risk creation
-- Risk resolution
-- Risk history
+Timeline
 
-### AI Recovery Intelligence
+20%
 
-The Recovery Agent generates tactical recovery strategies such as:
+Skills
 
-- Descoping non-MVP work
-- Reassigning tasks from overloaded members
-- Unblocking dependencies
-- Adjusting milestone timelines
+20%
 
-Recovery actions use a human-in-the-loop workflow. AI recommendations do not silently modify project data; users must explicitly approve recovery actions before they are applied.
+Scope
 
-### Project Copilot
+20%
 
-The ProjectForge Copilot provides project-context-aware assistance.
+Team Capacity
 
-It can answer questions about:
+15%
 
-- Project health
-- Current tasks
-- Milestones
-- Team workload
-- Skill gaps
-- Open risks
-- Project priorities
+The backend is the authoritative source for the health score and breakdown.
 
-The Copilot is grounded in live project data and avoids inventing nonexistent tasks, members, or project information.
+Architecture Visualization
 
-### Notifications & Activity Timeline
+Interactive React Flow architecture diagrams
 
-- Global notification system
-- Unread notification count
-- Health-change notifications
-- Risk notifications
-- Mark-as-read functionality
-- Project activity timeline
-- Lifecycle event auditing
+Component-based system visualization
 
-Tracked events include:
+Directional dependency relationships
 
-- `PROJECT_CREATED`
-- `AI_ANALYSIS_COMPLETED`
-- `RISK_DETECTED`
-- `RECOVERY_APPLIED`
-- `TASK_COMPLETED`
-- `HEALTH_SCORE_CHANGED`
-- `COPILOT_QUERY`
+AI-generated architecture representation
 
-### Health Trend History
+Execution Workspace
 
-ProjectForge AI stores historical health scores to visualize project health over time.
+Milestone management
+
+Task management
+
+Task dependencies
+
+Dependency-cycle detection
+
+Automatic task-completion tracking
+
+Milestone progress calculation
+
+Six-column Kanban board:
+
+Backlog
+
+Todo
+
+In Progress
+
+Blocked
+
+Review
+
+Completed
+
+Drag-and-drop task progression with optimistic UI updates and rollback
+
+Team & Resource Management
+
+Team-member management
+
+Task assignment
+
+Workload calculation
+
+Capacity classification
+
+Deterministic skill-gap analysis
+
+Required-skill coverage analysis
+
+Risk Radar
+
+Automatically detects risks such as:
+
+Team workload overload
+
+Blocked dependency bottlenecks
+
+Missing critical skills
+
+Milestone deadline proximity
+
+Includes:
+
+Severity classification
+
+Category and severity filtering
+
+Manual risk creation
+
+Risk resolution
+
+Risk history
+
+AI Recovery Intelligence
+
+Generates tactical recovery strategies such as:
+
+Descoping non-MVP work
+
+Reassigning overloaded tasks
+
+Unblocking dependencies
+
+Adjusting milestone timelines
+
+Recovery uses a human-in-the-loop workflow. AI recommendations require explicit user approval before project data is modified.
+
+Project Copilot
+
+The Copilot can answer questions about:
+
+Project health
+
+Tasks
+
+Milestones
+
+Team workload
+
+Skill gaps
+
+Open risks
+
+Project priorities
+
+It is grounded in live project data and is designed to avoid inventing nonexistent project information.
+
+Notifications & Activity Timeline
+
+Global notifications
+
+Unread notification count
+
+Health-change notifications
+
+Risk notifications
+
+Mark-as-read functionality
+
+Project activity timeline
+
+Lifecycle-event auditing
+
+Health Trend History
+
+Historical health scores are stored to visualize project health over time.
 
 Example:
 
 72 → 76 → 81 → 78
 
-### Demo Showcase
+Interactive Demo
 
-The application includes a one-click interactive demo project containing:
+The application includes a one-click demo project containing:
 
-- 5 team members
-- 5 milestones
-- 21 tasks
-- Multiple Kanban states
-- 4 project risks
-- Architecture visualization
-- Health history
-- Project telemetry
+5 team members
 
----
+5 milestones
 
-## 3. Technology Stack
+21 tasks
 
-### Frontend
+Multiple Kanban states
 
-- Next.js 14 (App Router)
-- React 18
-- Tailwind CSS
-- Zustand
-- Axios
-- React Flow (`reactflow`)
-- Recharts
-- Lucide React
-- `@hello-pangea/dnd`
+4 project risks
 
-### Backend
+Architecture visualization
 
-- Node.js
-- Express.js
-- Mongoose
-- MongoDB Atlas / MongoMemoryServer fallback
-- JWT (JSON Web Tokens)
-- bcryptjs
-- express-validator
-- Helmet
-- CORS
-- express-rate-limit
-- Morgan
-- Compression
+Health history
 
-### AI Services
+Project telemetry
 
-- **Primary Provider**: OpenRouter API
-- **Secondary Provider**: Google Gemini API
-- **Fallback**: Deterministic rule-based engine
+4. Technology Stack
 
-### Development & Deployment
+Frontend
 
-- GitHub
-- Vercel (Frontend)
-- Render (Backend)
-- MongoDB Atlas (Database)
+Next.js 14 (App Router)
 
----
+React 18
 
-## 4. System Architecture
+Tailwind CSS
 
-```text
+Zustand
+
+Axios
+
+React Flow
+
+Recharts
+
+Lucide React
+
+@hello-pangea/dnd
+
+Backend
+
+Node.js
+
+Express.js
+
+Mongoose
+
+MongoDB Atlas
+
+MongoMemoryServer fallback
+
+JWT
+
+bcryptjs
+
+express-validator
+
+Helmet
+
+CORS
+
+express-rate-limit
+
+Morgan
+
+Compression
+
+AI Services
+
+Primary: OpenRouter API
+
+Secondary: Google Gemini API
+
+Fallback: Deterministic rule-based engine
+
+Deployment
+
+GitHub
+
+Vercel — Frontend
+
+Render — Backend
+
+MongoDB Atlas — Database
+
+5. Screenshots
+
+Screenshots are intentionally not included in this repository README.
+
+The deployed application can be explored through the live demo below.
+
+6. Live Demo
+
+Frontend:
+https://projectforge-ai-gamma.vercel.app/
+
+GitHub Repository:
+https://github.com/manav122005/projectforge-ai
+
+7. Backend
+
+Backend API:
+https://projectforge-ai-b7ai.onrender.com/
+
+Backend Health Check:
+https://projectforge-ai-b7ai.onrender.com/api/health
+
+8. Setup Instructions
+
+Prerequisites
+
+Node.js 18 or higher
+
+npm 9 or higher
+
+Git
+
+MongoDB instance, or the application's configured memory-server fallback
+
+1. Clone the Repository
+
+git clone https://github.com/manav122005/projectforge-ai.git
+cd projectforge-ai
+
+2. Configure the Backend
+
+Create:
+
+backend/.env
+
+Add the required environment variables:
+
+PORT=5000
+NODE_ENV=development
+
+MONGODB_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_secure_jwt_secret
+JWT_EXPIRES_IN=7d
+
+OPENROUTER_API_KEY=your_openrouter_api_key
+GEMINI_API_KEY=your_gemini_api_key
+
+CLIENT_URL=http://localhost:3000
+
+3. Install and Start the Backend
+
+cd backend
+npm install
+npm run dev
+
+The backend runs at:
+
+http://localhost:5000
+
+4. Configure the Frontend
+
+Create:
+
+frontend/.env.local
+
+Add:
+
+NEXT_PUBLIC_API_URL=http://localhost:5000/api
+
+5. Install and Start the Frontend
+
+Open another terminal:
+
+cd frontend
+npm install
+npm run dev
+
+The frontend runs at:
+
+http://localhost:3000
+
+9. Environment Variables
+
+Actual secrets must never be committed to GitHub.
+
+Backend
+
+Variable
+
+Purpose
+
+PORT
+
+Backend server port
+
+NODE_ENV
+
+Application environment
+
+MONGODB_URI
+
+MongoDB connection string
+
+JWT_SECRET
+
+JWT signing secret
+
+JWT_EXPIRES_IN
+
+JWT expiration duration
+
+OPENROUTER_API_KEY
+
+OpenRouter API key
+
+GEMINI_API_KEY
+
+Gemini API key
+
+CLIENT_URL
+
+Frontend origin
+
+Frontend
+
+Variable
+
+Purpose
+
+NEXT_PUBLIC_API_URL
+
+Backend API base URL
+
+Environment files such as .env, .env.local, and other environment-specific files are excluded through .gitignore.
+
+Additional Technical Details
+
+System Architecture
+
                     ┌─────────────────────┐
                     │       User          │
                     └──────────┬──────────┘
@@ -260,8 +493,8 @@ The application includes a one-click interactive demo project containing:
                     ┌─────────────────────┐
                     │   Express Backend   │
                     │ Authentication      │
-                    │ Validation          │
-                    │ Business Logic      │
+                    │ Validation           │
+                    │ Business Logic       │
                     └──────┬───────┬──────┘
                            │       │
                 ┌──────────┘       └──────────┐
@@ -277,66 +510,37 @@ The application includes a one-click interactive demo project containing:
        │ Events          │
        │ Notifications   │
        └─────────────────┘
-```
 
----
+Security
 
-## 5. Security
+ProjectForge AI implements:
 
-ProjectForge AI implements defense-in-depth security measures:
+JWT authentication
 
-### Authentication
+Protected API routes
 
-- JWT-based authentication
-- Protected API routes
-- Bearer token authentication
-- bcrypt password hashing
+Project ownership and member authorization
 
-### Authorization
+bcrypt password hashing
 
-- Project ownership verification
-- Project-member authorization
-- Protected project resources
-- Cross-project assignment validation
+Input validation
 
-### Input Protection
+Dependency validation
 
-- express-validator validation
-- Input sanitization
-- Mutation validation
-- Dependency validation
-- Centralized error handling middleware
+Centralized error handling
 
-### API Security
+Helmet security headers
 
-- Helmet HTTP security headers
-- CORS configuration
-- Rate limiting on authentication endpoints
-- Environment-variable based configuration
+CORS configuration
 
-### Secret Protection
+Authentication rate limiting
 
-Sensitive configuration is never stored in the repository. The following files remain ignored:
+Environment-variable based secret management
 
-```text
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-```
+Database Structure
 
-API keys, database credentials, JWT secrets, and other private credentials are provided exclusively through environment variables.
+Major MongoDB models include:
 
----
-
-## 6. Database Structure
-
-ProjectForge AI uses MongoDB Atlas for persistent data storage.
-
-Major collections/models include:
-
-```text
 Users
 Projects
 AI Analyses
@@ -346,223 +550,38 @@ Project Members
 Risks
 Project Events
 Notifications
-```
 
-Relationships between project entities are validated by the backend:
+Testing
 
-```text
-Project
- ├── AI Analysis
- ├── Milestones
- │    └── Tasks
- ├── Team Members
- ├── Risks
- ├── Notifications
- ├── Project Events
- └── Health History
-```
+The backend contains automated tests covering authentication, project CRUD, authorization, AI analysis, architecture generation, planning, milestones, tasks, dependencies, Kanban updates, team capacity, skill gaps, risk detection, recovery, notifications, project events, Copilot functionality, demo seeding, and health-score consistency.
 
----
+Current verification:
 
-## 7. Testing
+6 / 6 test suites passed
+42 / 42 test cases passed
+0 failures
 
-The backend includes automated test suites covering all platform phases:
+Test suites:
 
-### Test Suites
-
-```text
 test_api.js
 test_project_api.js
 test_ai_phase3.js
 test_phase4.js
 test_phase5_phase6.js
 test_health_audit.js
-```
 
-### Current Verification
+AI Provider Resilience
 
-```text
-6 / 6 test suites passed
-42 / 42 test cases passed
-0 failures
-```
-
-The tests cover:
-
-- Authentication
-- Project CRUD
-- Authorization
-- AI analysis
-- Architecture generation
-- Planning
-- Milestone management
-- Task management
-- Dependency validation
-- Cycle detection
-- Kanban updates
-- Team capacity
-- Skill-gap analysis
-- Risk detection
-- Risk resolution
-- Recovery execution
-- Notifications
-- Project events
-- AI Copilot
-- Demo project seeding
-- Health-score consistency
-
----
-
-## 8. Live Demo
-
-| Service              | URL                                                  |
-|----------------------|------------------------------------------------------|
-| Frontend             | https://projectforge-ai-gamma.vercel.app/            |
-| Backend API          | https://projectforge-ai-b7ai.onrender.com/           |
-| Backend Health Check | https://projectforge-ai-b7ai.onrender.com/api/health |
-| GitHub Repository    | https://github.com/manav122005/projectforge-ai       |
-
----
-
-## 9. Running Locally
-
-### Prerequisites
-
-- Node.js 18.0 or higher
-- npm 9.0 or higher
-- MongoDB instance (or automated memory server fallback)
-- Git
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/manav122005/projectforge-ai.git
-cd projectforge-ai
-```
-
-### 2. Configure the Backend
-
-Create `backend/.env`:
-
-```env
-PORT=5000
-NODE_ENV=development
-
-MONGODB_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secure_jwt_secret
-JWT_EXPIRES_IN=7d
-
-OPENROUTER_API_KEY=your_openrouter_api_key
-GEMINI_API_KEY=your_gemini_api_key
-
-CLIENT_URL=http://localhost:3000
-```
-
-### 3. Install Backend Dependencies & Start
-
-```bash
-cd backend
-npm install
-npm run dev
-```
-
-Backend server runs at `http://localhost:5000`.
-
-### 4. Configure the Frontend
-
-Create `frontend/.env.local`:
-
-```env
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
-```
-
-### 5. Install Frontend Dependencies & Start
-
-Open another terminal:
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Frontend application runs at `http://localhost:3000`.
-
----
-
-## 10. Environment Variables
-
-### Backend
-
-| Variable | Purpose |
-|---|---|
-| `PORT` | Backend server port |
-| `NODE_ENV` | Application environment |
-| `MONGODB_URI` | MongoDB connection string |
-| `JWT_SECRET` | JWT signing secret |
-| `JWT_EXPIRES_IN` | JWT expiration duration |
-| `OPENROUTER_API_KEY` | OpenRouter API key |
-| `GEMINI_API_KEY` | Gemini API key |
-| `CLIENT_URL` | Frontend origin |
-
-### Frontend
-
-| Variable | Purpose |
-|---|---|
-| `NEXT_PUBLIC_API_URL` | Backend API base URL |
-
----
-
-## 11. Health Score Architecture
-
-ProjectForge AI uses a deterministic backend health engine as the authoritative source of project health.
-
-The score is calculated from:
-
-```text
-Technical       → 25%
-Timeline        → 20%
-Skills          → 20%
-Scope           → 20%
-Team Capacity   → 15%
-```
-
-The calculated health score and breakdown are persisted to the Project document in MongoDB.
-
-All project views use the persisted backend health state, including:
-
-- Dashboard
-- Project cards
-- Project detail
-- Health widgets
-- Health history
-
----
-
-## 12. AI Provider Resilience
-
-ProjectForge AI uses a multi-tier AI provider strategy:
-
-```text
 OpenRouter (Primary)
-    ↓
+        ↓
 Gemini (Secondary)
-    ↓
-Deterministic Fallback (Offline Guaranteed)
-```
+        ↓
+Deterministic Fallback
 
-If the primary provider is unavailable, the system automatically falls back to Gemini. If external AI providers are unavailable or fail, deterministic fallback logic ensures core analysis, architecture, and planning operations succeed without crashing.
+If an external AI provider fails, the fallback layer allows supported core operations to continue without depending entirely on a single provider.
 
----
+Human-in-the-Loop Recovery
 
-## 13. Human-in-the-Loop Safety
-
-AI-generated recovery recommendations do not automatically modify project data.
-
-The workflow is:
-
-```text
 AI analyzes project
         ↓
 Recovery strategy generated
@@ -576,10 +595,7 @@ Backend validates action
 Project mutation executed
         ↓
 Event recorded in audit trail
-```
 
----
-
-## 14. License
+License
 
 MIT License — Copyright (c) 2026 ProjectForge AI Contributors.
