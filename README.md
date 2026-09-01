@@ -330,7 +330,7 @@ MongoDB Atlas — Database
 
 5. Screenshots
 
-Screenshots are intentionally not included in this repository README.
+Screenshots are intentionally not included in this repository README, but in docs/screenshots. 
 
 The deployed application can be explored through the live demo below.
 
