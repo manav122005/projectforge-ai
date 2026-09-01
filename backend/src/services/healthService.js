@@ -13,6 +13,8 @@ const getHealthStatus = async () => {
 
   return {
     status: isHealthy ? 'ok' : 'degraded',
+    version: '1.0.1',
+    engine: 'deterministic-v2',
     uptime: Math.floor(process.uptime()),
     timestamp: new Date().toISOString(),
     database: {
